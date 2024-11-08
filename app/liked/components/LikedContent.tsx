@@ -1,11 +1,11 @@
 "use client";
 
+import LikeButton from "@/components/LikeButton";
 import MediaItem from "@/components/MediaItem";
 import { useUser } from "@/hooks/useUser";
 import { Song } from "@/types";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { DiVim } from "react-icons/di";
 
 interface LikedContentProps {
   songs: Song[];
@@ -35,6 +35,7 @@ const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
           <div className="flex-1">
             <MediaItem onClick={() => {}} data={song} />
           </div>
+          <LikeButton songId={song.id} />
         </div>
       ))}
     </div>
