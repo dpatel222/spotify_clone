@@ -1,7 +1,7 @@
 import { Price } from "@/types";
 import { headers } from "next/headers";
 
-export const getUrl = () => {
+export const getURL = () => {
   let url =
     process.env.NEXT_PUBLIC_SITE_URL ??
     process.env.NEXT_PUBLIC_VERCEL_URL ??
