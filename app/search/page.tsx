@@ -3,20 +3,17 @@ import Header from "@/components/Header";
 import SearchInput from "@/components/SearchInput";
 import SearchContent from "./components/SearchContent";
 
+type SearchParams = Promise<{ title?: string }>;
+
 interface SearchProps {
-  searchParams: {
-    title?: string; // Make title optional to handle potential undefined cases
-  };
+  searchParams: SearchParams;
 }
 
 export const revalidate = 0;
 
-const Search = async ({
-  searchParams,
-}: {
-  searchParams: { title?: string };
-}) => {
-  const songs = await getSongsByTitle(searchParams.title || ""); // Fallback to an empty string if title is undefined
+const Search = async ({ searchParams }: SearchProps) => {
+  const { title } = await searchParams; // Await searchParams to destructure title
+  const songs = await getSongsByTitle(title || ""); // Fallback to an empty string if title is undefined
 
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
