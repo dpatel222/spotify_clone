@@ -12,6 +12,7 @@ import { useUser } from "@/hooks/useUser";
 import { FaUserAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
 import usePlayer from "@/hooks/usePlayer";
+import useHowToUseModal from "@/hooks/useHowToModal";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
   const player = usePlayer();
   const AuthModal = useAuthModal();
   const router = useRouter();
+  const HowToUseModal = useHowToUseModal();
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
@@ -61,10 +63,18 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         </div>
         <div className="flex md:hidden gap-x-2 items-center">
           <button className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition">
-            <HiHome className="text-black" size={20} />
+            <HiHome
+              onClick={() => router.push("/")}
+              className="text-black"
+              size={20}
+            />
           </button>
           <button className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition">
-            <BiSearch className="text-black" size={20} />
+            <BiSearch
+              onClick={() => router.push("/search")}
+              className="text-black"
+              size={20}
+            />
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
@@ -82,6 +92,14 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             </div>
           ) : (
             <>
+              <div>
+                <Button
+                  onClick={HowToUseModal.onOpen}
+                  className="bg-transparent text-neutral-300 font-medium"
+                >
+                  Website Info
+                </Button>
+              </div>
               <div>
                 <Button
                   onClick={AuthModal.onOpen}
