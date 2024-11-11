@@ -12,7 +12,7 @@ import { useUser } from "@/hooks/useUser";
 import { FaUserAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
 import usePlayer from "@/hooks/usePlayer";
-import useHowToUseModal from "@/hooks/useHowToModal";
+import useHowToUseModal from "@/hooks/useHowToUseModal";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -78,6 +78,14 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
+          <div>
+            <Button
+              onClick={HowToUseModal.onOpen}
+              className="bg-transparent text-neutral-300 font-medium"
+            >
+              Website Info
+            </Button>
+          </div>
           {user ? (
             <div className="flex gap-x-4 items-center">
               <Button onClick={handelLogout} className="bg-white px-6 py-2">
@@ -92,14 +100,6 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             </div>
           ) : (
             <>
-              <div>
-                <Button
-                  onClick={HowToUseModal.onOpen}
-                  className="bg-transparent text-neutral-300 font-medium"
-                >
-                  Website Info
-                </Button>
-              </div>
               <div>
                 <Button
                   onClick={AuthModal.onOpen}
